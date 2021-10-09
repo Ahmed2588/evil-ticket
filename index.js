@@ -137,7 +137,7 @@ client.on("clickButton", async(button) => {
             .setDescription(`الأدارة سوف تأتي قريباً الرجاء الانتظار
 لـ قفل  التذكرة ، يرجى الضغط على الزر أسفل الرسالة 🔒`)
            .setColor("GREEN")
-           .setFooter(message.guild.name,message.guild.iconURL({ dynamic: true }))
+           .setFooter(button.message.guild.name,message.guild.iconURL({ dynamic: true }))
                        
        const button2 = new MessageButton()
             .setLabel("Close")
@@ -149,7 +149,7 @@ client.on("clickButton", async(button) => {
                embeds: [embed],
                button: button
            });
-           
+
             button.guild.channels.cache.get(button.channel.id).updateOverwrite(data.RoleID,{
                 VIEW_CHANNEL: false
             });
