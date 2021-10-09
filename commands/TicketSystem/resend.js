@@ -19,7 +19,7 @@ module.exports = {
 
             const embed = new MessageEmbed()
             .setTitle(tdata.embedTitle)
-            .setDescription(`أظغط على 📩 لـ فتح التذكرة`)
+            .setDescription(`To create a ticket click on the button bleow down 📩`)
             .setColor("GREEN")
             .setFooter(message.guild.name,message.guild.iconURL({dynamic: true}))
 
