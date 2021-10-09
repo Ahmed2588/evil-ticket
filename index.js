@@ -132,12 +132,13 @@ client.on("clickButton", async(button) => {
                 GuildID: button.message.guild.id,
                 ChannelID: button.message.channel.id
             });
+            if (!data) return;
         if (button.clicker.id === data.UserID) {
             const embed = new Discord.MessageEmbed()
             .setDescription(`الأدارة سوف تأتي قريباً الرجاء الانتظار
 لـ قفل  التذكرة ، يرجى الضغط على الزر أسفل الرسالة 🔒`)
            .setColor("GREEN")
-           .setFooter(button.message.guild.name,message.guild.iconURL({ dynamic: true }))
+           .setFooter(button.message.guild.name,button.message.guild.iconURL({ dynamic: true }))
                        
        const button2 = new MessageButton()
             .setLabel("Close")
