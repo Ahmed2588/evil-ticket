@@ -209,7 +209,7 @@ client.on('clickButton', async(button) => {
         button.message.channel.send(embed).then(msg => {
             msg.delete({timeout:2000})
             setTimeout(async => {
-            button.channel.delete
+            button.channel.delete()
             }, 6000)
         })
     }
