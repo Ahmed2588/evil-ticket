@@ -129,8 +129,8 @@ client.on("clickButton", async(button) => {
     if (button.applicationID === client.user.id) {
         if (button.id === "a_button") {
             const data = await usersdata.findOne({
-                GuildID: message.guild.id,
-                ChannelID: message.channel.id
+                GuildID: button.message.guild.id,
+                ChannelID: button.message.channel.id
             });
         if (button.clicker.id === data.UserID) {
             const embed = new Discord.MessageEmbed()
