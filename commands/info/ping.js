@@ -9,7 +9,7 @@ module.exports = {
     run: async(client,message,args) => {
     const embed = new MessageEmbed()
     .setTitle("Pong 🏓")
-    .setDescription(`Client ping : **${client.ws.ping}**MS`)
+    .setDescription(`Client ws ping : **${client.ws.ping}**MS`)
     .setColor("GREEN")
 
     message.channel.send(embed)
