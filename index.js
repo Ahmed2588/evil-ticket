@@ -100,13 +100,7 @@ client.on("clickButton", async(button) => {
              .setID("close_button")
              .setStyle("gray")
 
-             const button3 = new MessageButton()
-             .setLabel("Raise the ticket to senior management")
-             .setEmoji("🚩")
-             .setID("a_button")
-             .setStyle("gray")
-
-             tchannel.send(`<@${message.clicker.id}> // <@&${ticketdata.WhiteRoleID}>`, { buttons: [button2,button3],embed: embed }).then(async(msgs) => {
+             tchannel.send(`<@${message.clicker.id}> // <@&${ticketdata.WhiteRoleID}>`, { button: button2,embed: embed }).then(async(msgs) => {
             const newData = usersdata.create({
                      GuildID: message.guild.id,
                      ChannelID: tchannel.id,
@@ -122,42 +116,6 @@ client.on("clickButton", async(button) => {
             }
         
     }
-    }
-});
-//senior management button
-client.on("clickButton", async(button) => {
-    if (button.applicationID === client.user.id) {
-        if (button.id === "a_button") {
-            const data = await usersdata.findOne({
-                GuildID: button.message.guild.id,
-                ChannelID: button.message.channel.id
-            });
-            if (!data) return;
-        if (button.clicker.id === data.UserID) {
-            const embed = new Discord.MessageEmbed()
-            .setDescription(`الأدارة سوف تأتي قريباً الرجاء الانتظار
-لـ قفل  التذكرة ، يرجى الضغط على الزر أسفل الرسالة 🔒`)
-           .setColor("GREEN")
-           .setFooter(button.message.guild.name,button.message.guild.iconURL({ dynamic: true }))
-                       
-       const button2 = new MessageButton()
-            .setLabel("Close")
-            .setEmoji("🔒")
-            .setID("close_button")
-           .setStyle("gray")
-
-           button.message.edit({
-               embeds: [embed],
-               button: button
-           });
-
-            button.guild.channels.cache.get(button.channel.id).updateOverwrite(data.RoleID,{
-                VIEW_CHANNEL: false
-            });
-
-            button.reply.send(`**تم رفع التذكرة إلى الأدارة العليا.**`,true)
-        }
-        }
     }
 });
 //yes button no button
