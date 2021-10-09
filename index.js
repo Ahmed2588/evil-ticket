@@ -30,7 +30,7 @@ client.on("ready",async() => {
     }, 2000)
     })
     })
-
+//Welcome command
     client.on("guildMemberAdd", async(member) => {
         // image link : https://cdn.discordapp.com/attachments/871457096703553629/895413894196113448/123.png
         const createCanvas = canvas.createCanvas(400, 200);
@@ -56,7 +56,7 @@ client.on("ready",async() => {
         })
     })
 
-
+//creating ticket 
 client.on("clickButton", async(button) => {
     if (button.id === "create_button") {
     if (button.applicationID === client.user.id) {
@@ -124,12 +124,15 @@ client.on("clickButton", async(button) => {
     }
     }
 });
-
+//senior management button
 client.on("clickButton", async(button) => {
     if (button.applicationID === client.user.id) {
         if (button.id === "a_button") {
-            const data = await usersdata.findOne({ GuildID: button.guild.id,ChanneID: button.channel.id });
-            if (!data) return button.reply.send().catch(console.log)
+            const data = await usersdata.findOne({
+                GuildID: message.guild.id,
+                ChannelID: message.channel.id
+            });
+        if (button.clicker.id === data.UserID) {
 
             button.guild.channels.cache.get(button.channel.id).updateOverwrite(data.RoleID,{
                 VIEW_CHANNEL: false
@@ -137,9 +140,10 @@ client.on("clickButton", async(button) => {
 
             button.reply.send(`**تم رفع التذكرة إلى الأدارة العليا.**`,true)
         }
+        }
     }
-})
-
+});
+//yes button no button
 client.on("clickButton", async(button) => {
     let message = button;
     if (message.applicationID === client.user.id) {
@@ -165,8 +169,9 @@ client.on("clickButton", async(button) => {
     }
         }
     }
-})
+});
 
+//yes button no button functions
 client.on("clickButton", async(button) => {
     if (button.applicationID === client.user.id) {
         if (button.id === "yes_button") {
@@ -215,6 +220,7 @@ client.on("clickButton", async(button) => {
     }
 });
 
+//delete button open button transscript button
 client.on('clickButton', async(button) => {
     if (button.id === 'Delete') {
         const datalog = await usersdata.findOne({
@@ -228,7 +234,7 @@ client.on('clickButton', async(button) => {
         button.message.channel.send(embed).then(msg => {
             msg.delete({timeout:2000})
             setTimeout(async => {
-            msg.channel.delete()
+            button.channel.delete
             }, 6000)
         })
     }
@@ -289,8 +295,9 @@ client.on('clickButton', async(button) => {
         button.message.channel.send(transembed)
     }
 
-})
+});
 
+//delete command
 client.on("message", async(message) => {
     if (message.content.startsWith("delete")) {
     const data = await usersdata.findOne({
@@ -319,8 +326,9 @@ message.channel.send(embed)
     }
     }
     }
-})
+});
 
+//rename command
 client.on("message", async(message) => {
     if (message.content.startsWith("rename")) {
         const args = message.content.split(" ").slice(1).join(" ")
@@ -338,7 +346,6 @@ client.on("message", async(message) => {
         }
     }
     }
-})
+});
 
 client.login(process.env.BOT_TOKEN);
-
